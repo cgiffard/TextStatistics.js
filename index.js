@@ -145,7 +145,7 @@
 		};
 		
 		// Return if we've hit one of those...
-		if (problemWords[word]) return problemWords[word];
+		if (problemWords.hasOwnProperty(word)) return problemWords[word];
 		
 		// These syllables would be counted as two but should be one
 		var subSyllables = [
