@@ -11,3 +11,5 @@ Same goes for a test suite - I'll get something working in node in a bit. :)
 ## Installation
 
 Run this in the browser using a simple `<script>` include - or you can install for node with `npm install text-statistics`.
+
+**[Famous! As seen in Time!](http://time.com/2958650/twitter-reading-level/)** (heh.)
