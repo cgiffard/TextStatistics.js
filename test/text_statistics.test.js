@@ -1,6 +1,11 @@
 var chai = require('chai');
-// var should = chai.should();
 var assert = chai.assert;
+
+/*
+    This file contains the more basic tests - short sentences, word counts,
+    sentence counts, and so on. Longer texts are split into their own test
+    files for convenience.
+*/
 
 var TS = require('../index');
 var ts = TS();
@@ -260,7 +265,7 @@ describe('Test Scores',function(){
     assert.equal(1.8, ts.smogIndex('The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog'));
     assert.equal(10.1, ts.smogIndex('Now it is time for a more complicated sentence, including several longer words.'));
   });
-  
+
   it('testAutomatedReadabilityIndex', function(){
     assert.equal(-5.6, ts.automatedReadabilityIndex('This. Is. A. Nice. Set. Of. Small. Words. Of. One. Part. Each.'));
     assert.equal(1.4, ts.automatedReadabilityIndex('The quick brown fox jumps over the lazy dog.'));
