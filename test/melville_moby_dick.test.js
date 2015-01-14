@@ -250,66 +250,66 @@ describe('Test Syllables', function(){
         assert.equal(2, ts.syllableCount('ocean'));
         assert.equal(1, ts.syllableCount('with'));
         assert.equal(1, ts.syllableCount('me'));
-    }
+    });
 
     /* Test Word Count
     -------------------- */
     it('testWordCount', function(){
         assert.equal(201, ts.wordCount(strText));
-    }
+    });
 
     /* Test Long Word Count
     -------------------- */
     it('testLongWordCount', function(){
         assert.equal(23, ts.wordsWithThreeSyllables(strText, true)); // Include proper nouns
         assert.equal(22, ts.wordsWithThreeSyllables(strText, false)); // Don't include proper nouns
-    }
+    });
 
     /* Test Sentences
     -------------------- */
     it('testSentenceCount', function(){
         assert.equal(8, ts.sentenceCount(strText));
-    }
+    });
 
     /* Test Letter Count
     -------------------- */
     it('testTextLengthCheck', function(){
         assert.equal(884, ts.letterCount(strText));
-    }
+    });
 
     /* Test Flesch Kincaid Reading Ease
     -------------------- */
     it('testFleschKincaidReadingEase', function(){
         assert.equal(53.4, ts.fleschKincaidReadingEase(strText));
-    }
+    });
 
     /* Test Flesch Kincaid Grade Level
     -------------------- */
     it('testFleschKincaidGradeLevel', function(){
         assert.equal(12.1, ts.fleschKincaidGradeLevel(strText));
-    }
+    });
 
     /* Test Gunning Fog Score
     -------------------- */
     it('testGunningFogScore', function(){
         assert.equal(14.4, ts.gunningFogScore(strText));
-    }
+    });
 
     /* Test Coleman Liau Index
     -------------------- */
     it('testColemanLiauIndex', function(){
         assert.equal(10.1, ts.colemanLiauIndex(strText));
-    }
+    });
 
     /* Test SMOG Index
     -------------------- */
     it('testSMOGIndex', function(){
         assert.equal(9.9, ts.smogIndex(strText));
-    }
+    });
 
     /* Test Automated Readability Index
     -------------------- */
     it('testAutomatedReadabilityIndex', function(){
         assert.equal(11.8, ts.automatedReadabilityIndex(strText));
-    }
+    });
 });
