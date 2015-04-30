@@ -11,8 +11,8 @@
 		var fullStopTags = ['li', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'dd'];
 		
 		fullStopTags.forEach(function(tag) {
-			text = text.replace("</" + tag + ">",".");
-		})
+			text = text.replace(new RegExp("\<\/" + tag + "\>", 'g'),".");
+		});
 		
 		text = text
 			.replace(/<[^>]+>/g, "")				// Strip tags
