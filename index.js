@@ -16,13 +16,13 @@
 		
 		text = text
 			.replace(/<[^>]+>/g, "")				// Strip tags
-			.replace(/[,:;()\-]/, " ")				// Replace commans, hyphens etc (count them as spaces)
-			.replace(/[\.!?]/, ".")					// Unify terminators
+			.replace(/[,:;()\-]/g, " ")				// Replace commans, hyphens etc (count them as spaces)
+			.replace(/[\.!?]/g, ".")					// Unify terminators
 			.replace(/^\s+/,"")						// Strip leading whitespace
-			.replace(/[ ]*(\n|\r\n|\r)[ ]*/," ")	// Replace new lines with spaces
-			.replace(/([\.])[\. ]+/,".")			// Check for duplicated terminators
-			.replace(/[ ]*([\.])/,". ")				// Pad sentence terminators
-			.replace(/\s+/," ")						// Remove multiple spaces
+			.replace(/[ ]*(\n|\r\n|\r)[ ]*/g," ")	// Replace new lines with spaces
+			.replace(/([\.])[\. ]+/g,".")			// Check for duplicated terminators
+			.replace(/[ ]*([\.])/g,". ")				// Pad sentence terminators
+			.replace(/\s+/g," ")						// Remove multiple spaces
 			.replace(/\s+$/,"");					// Strip trailing whitespace
 			
 		text += "."; // Add final terminator, just in case it's missing.
