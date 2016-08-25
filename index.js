@@ -12,7 +12,7 @@
 		
 		fullStopTags.forEach(function(tag) {
 			text = text.replace("</" + tag + ">",".");
-		})
+		});
 		
 		text = text
 			.replace(/<[^>]+>/g, "")				// Strip tags
@@ -84,7 +84,7 @@
 	
 	TextStatistics.prototype.wordCount = function(text) {
 		text = text ? cleanText(text) : this.text;
-		return text.split(/[^a-z0-9]+/i).length || 1;
+		return text.split(/[^a-z0-9\'@\.]+/i).length || 1;
 	};
 	
 	TextStatistics.prototype.averageWordsPerSentence = function(text) {
@@ -210,7 +210,7 @@
 		wordPartCount = word
 			.split(/[^aeiouy]+/ig)
 			.filter(function(wordPart) {
-				return !!wordPart.replace(/\s+/ig,"").length
+				return !!wordPart.replace(/\s+/ig,"").length;
 			})
 			.length;
 		
