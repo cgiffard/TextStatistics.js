@@ -2,6 +2,24 @@ var assert = require('assert');
 var TextStatistics = require('../index.js');
 
 describe('TextStatistics', function() {
+
+  describe('#sentenceCount()', function() {
+    it('should count a single sentence', function() {
+      var ts = TextStatistics('see spot run.');
+      assert.equal(1, ts.sentenceCount());
+    });
+
+    it('should count a single sentence with a comma', function() {
+      var ts = TextStatistics('see, spot runs.');
+      assert.equal(1, ts.sentenceCount());
+    });
+
+    it('should count a few simple sentences', function() {
+      var ts = TextStatistics('see spot run. good job spot. have a treat.');
+      assert.equal(3, ts.sentenceCount());
+    });
+  });
+
   describe('#wordCount()', function() {
     it('an empty string should have word count of one, because dividing by zero', function() {
       var ts = TextStatistics('');
@@ -27,5 +45,10 @@ describe('TextStatistics', function() {
       var ts = TextStatistics('textstatistics@example.com');
       assert.equal(1, ts.wordCount());
     });
+
+    it('should count words with a dash as a single word', function() {
+      var ts = TextStatistics('long-term');
+      assert.equal(1, ts.wordCount());
+    })
   });
 });
