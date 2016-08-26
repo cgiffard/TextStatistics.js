@@ -49,6 +49,6 @@ describe('TextStatistics', function() {
     it('should count words with a dash as a single word', function() {
       var ts = TextStatistics('long-term');
       assert.equal(1, ts.wordCount());
-    })
+    });
   });
 });
