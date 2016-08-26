@@ -86,7 +86,7 @@
 	
 	TextStatistics.prototype.wordCount = function(text) {
 		text = text ? cleanText(text) : this.text;
-		return text.split(/[^a-z0-9\'@\.]+/i).length || 1;
+		return text.split(/[^a-z0-9\'@\.\-]+/i).length || 1;
 	};
 	
 	TextStatistics.prototype.averageWordsPerSentence = function(text) {

@@ -21,8 +21,8 @@ describe('TextStatistics', function() {
   });
 
   describe('#wordCount()', function() {
-    it('an empty string should have word count of one, because dividing by zero', function() {
-      var ts = TextStatistics('');
+    it('a string w/o words should have word count of one, because dividing by zero', function() {
+      var ts = TextStatistics('.');
       assert.equal(1, ts.wordCount());
     });
 
