@@ -3,7 +3,6 @@
 // 1:1 API Fork of TextStatistics.php by Dave Child (Thanks mate!)
 // https://github.com/DaveChild/Text-Statistics
 
-
 (function(glob) {
 	
 	function cleanText(text) {
@@ -126,6 +125,19 @@
 		text = text ? cleanText(text) : this.text;
 		
 		return (this.wordsWithThreeSyllables(text,countProperNouns) / this.wordCount(text)) * 100;
+	};
+	
+	TextStatistics.prototype.timeToRead = function(text) {
+		var wordsPerMinute = 275;
+		var text = text ? cleanText(text) : this.text;
+		var textDifficulty = 1; // holding place for argument
+		var readTime = text.trim().split(/\s+/g).length / (wordsPerMinute * textDifficulty)
+		var message = "Less than a minute."
+		if (readTime < 1) {
+			return message;
+		} else {
+			return readTime.toFixed(2);
+		}
 	};
 	
 	TextStatistics.prototype.syllableCount = function(word) {
