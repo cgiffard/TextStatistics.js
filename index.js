@@ -12,21 +12,23 @@
 		
 		fullStopTags.forEach(function(tag) {
 			text = text.replace("</" + tag + ">",".");
-		})
+		});
 		
 		text = text
 			.replace(/<[^>]+>/g, "")				// Strip tags
-			.replace(/[,:;()\-]/, " ")				// Replace commans, hyphens etc (count them as spaces)
-			.replace(/[\.!?]/, ".")					// Unify terminators
-			.replace(/^\s+/,"")						// Strip leading whitespace
-			.replace(/[ ]*(\n|\r\n|\r)[ ]*/," ")	// Replace new lines with spaces
-			.replace(/([\.])[\. ]+/,".")			// Check for duplicated terminators
-			.replace(/[ ]*([\.])/,". ")				// Pad sentence terminators
-			.replace(/\s+/," ")						// Remove multiple spaces
-			.replace(/\s+$/,"");					// Strip trailing whitespace
+			.replace(/[,:;()\/&+]|\-\-/g, " ")				// Replace commas, hyphens etc (count them as spaces)
+			.replace(/[\.!?]/g, ".")					// Unify terminators
+			.replace(/^\s+/, "")						// Strip leading whitespace
+			.replace(/[\.]?(\w+)[\.]?(\w+)@(\w+)[\.](\w+)[\.]?/g, "$1$2@$3$4")	// strip periods in email addresses (so they remain counted as one word)
+			.replace(/[ ]*(\n|\r\n|\r)[ ]*/g, ".")	// Replace new lines with periods
+			.replace(/([\.])[\.]+/g, ".")			// Check for duplicated terminators
+			.replace(/[ ]*([\.])/g, ". ")				// Pad sentence terminators
+			.replace(/\s+/g, " ")						// Remove multiple spaces
+			.replace(/\s+$/, "");					// Strip trailing whitespace
 			
-		text += "."; // Add final terminator, just in case it's missing.
-		
+		if(text.slice(-1) != '.') {
+			text += "."; // Add final terminator, just in case it's missing.
+		}
 		return text;
 	}
 	
@@ -84,7 +86,7 @@
 	
 	TextStatistics.prototype.wordCount = function(text) {
 		text = text ? cleanText(text) : this.text;
-		return text.split(/[^a-z0-9]+/i).length || 1;
+		return text.split(/[^a-z0-9\'@\.\-]+/i).length || 1;
 	};
 	
 	TextStatistics.prototype.averageWordsPerSentence = function(text) {
@@ -210,7 +212,7 @@
 		wordPartCount = word
 			.split(/[^aeiouy]+/ig)
 			.filter(function(wordPart) {
-				return !!wordPart.replace(/\s+/ig,"").length
+				return !!wordPart.replace(/\s+/ig,"").length;
 			})
 			.length;
 		
