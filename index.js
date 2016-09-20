@@ -19,6 +19,7 @@
 			.replace(/[,:;()\/&+]|\-\-/g, " ")				// Replace commas, hyphens etc (count them as spaces)
 			.replace(/[\.!?]/g, ".")					// Unify terminators
 			.replace(/^\s+/, "")						// Strip leading whitespace
+			.replace(/[\.]?(\w+)[\.]?(\w+)@(\w+)[\.](\w+)[\.]?/g, "$1$2@$3$4")	// strip periods in email addresses (so they remain counted as one word)
 			.replace(/[ ]*(\n|\r\n|\r)[ ]*/g, ".")	// Replace new lines with periods
 			.replace(/([\.])[\.]+/g, ".")			// Check for duplicated terminators
 			.replace(/[ ]*([\.])/g, ". ")				// Pad sentence terminators
@@ -28,7 +29,6 @@
 		if(text.slice(-1) != '.') {
 			text += "."; // Add final terminator, just in case it's missing.
 		}
-		
 		return text;
 	}
 	

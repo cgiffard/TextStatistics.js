@@ -102,6 +102,33 @@ describe('TextStatistics', function() {
       });
     });
 
+    context('stripping periods from email addresses', function() {
+      it('should replace a single period', function() {
+        var ts = TextStatistics('textstatistics@example.com');
+        assert.equal(ts.text, 'textstatistics@examplecom.');
+      });
+
+      it('should replace a single period in the first part', function() {
+        var ts = TextStatistics('text.statistics@example.com');
+        assert.equal(ts.text, 'textstatistics@examplecom.');
+      });
+
+      it('should replace two periods in the first part', function() {
+        var ts = TextStatistics('text.stat.istics@example.com');
+        assert.equal(ts.text, 'textstatistics@examplecom.');
+      });
+
+      it('should replace periods with a subdomain', function() {
+        var ts = TextStatistics('textstatistics@test.example.com');
+        assert.equal(ts.text, 'textstatistics@testexamplecom.');
+      });
+
+      it('should replace periods with a subdomain and before the @', function() {
+        var ts = TextStatistics('text.stat.istics@test.example.com');
+        assert.equal(ts.text, 'textstatistics@testexamplecom.');
+      });
+    });
+
     context('replacing non-terminator punctuation', function() {
       it('should replace commas with spaces', function() {
         var ts = TextStatistics('Hello, hi, friend.');
