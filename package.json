@@ -2,16 +2,20 @@
   "author": "Christopher Giffard <christopher.giffard@cgiffard.com>",
   "name": "text-statistics",
   "description": "Extracts readability statistics from raw text. Javascript port of TextStatistics.php",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/cgiffard/TextStatistics.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/cgiffard/TextStatistics.js.git"
   },
+  "scripts": {
+    "test": "mocha test"
+  },
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "chai": "^1.10.0"
   },
   "optionalDependencies": {}
 }
